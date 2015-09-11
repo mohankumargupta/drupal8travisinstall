@@ -5,7 +5,7 @@ php:
 
 env:
    global:
-     - PATH=$PATH:/home/travis/.composer/vendor/bin
+     - PATH=$PATH:$HOME/.composer/vendor/bin
 
 sudo: false
 
@@ -13,7 +13,7 @@ install:
      - composer self-update
      - composer create-project drupal-composer/drupal-project:8.x-dev web --stability dev --no-interaction
      - cd web
-     - composer show -i
      - composer require symfony/translation:~2.7
      - composer require drupal/drupal-extension
-     - composer update
+     - composer global require drush/drush:dev-master
+     - drush site-install --db-url=sqlite://web.sqlite --account-name=admin --account-pass=password --site-name=boo --yes --quiet
