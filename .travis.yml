@@ -33,7 +33,7 @@ before_script:
      - drush pm-list --pipe --type=module --status=enabled --no-core | grep -x mentions
      - cp -a  ./modules/mentions/features .
      - find . -name behat
-     - ./core/vendor/behat -c ./modules/mentions/behat.yml -dl
+     - ./vendor/bin/behat -c ./modules/mentions/behat.yml -dl
 
 script:
      - ls -l
