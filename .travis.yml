@@ -10,7 +10,6 @@ env:
 sudo: false
 
 before_install:
-     - ls -l
      - composer self-update
      #- composer create-project drupal/drupal web 8.0.x-dev --no-interaction
      - git clone --branch 8.0.x http://git.drupal.org/project/drupal.git web
@@ -18,4 +17,7 @@ before_install:
      - composer require symfony/translation:~2.7
      - composer require drupal/drupal-extension
      - composer global require drush/drush:dev-master
-     - drush site-install --db-url=sqlite://./web.sqlite --account-name=admin --account-pass=password --site-name=boo --yes --quiet
+     - drush site-install --db-url=sqlite://./web.sqlite --account-name=admin --account-pass=password --site-name=boo --yes 
+
+script:
+     - ls -l
