@@ -19,7 +19,7 @@ before_install:
      - composer global require drush/drush:dev-master
      - drush site-install --db-url=sqlite://./web.sqlite --account-name=admin --account-pass=password --site-name=boo --yes 
      - drush runserver --server=builtin 8080 --strict=0 &
-     - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do sleep 0.2; done
+     #- until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do sleep 0.2; done
      - cd modules
      - git clone https://github.com/mohankumargupta/mentionsdrupal8module.git mentions
      - wget "http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar"
