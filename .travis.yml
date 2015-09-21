@@ -18,6 +18,21 @@ before_install:
      - composer require drupal/drupal-extension
      - composer global require drush/drush:dev-master
      - drush site-install --db-url=sqlite://./web.sqlite --account-name=admin --account-pass=password --site-name=boo --yes 
+     - drush runserver --server=builtin 8080 --strict=0 &
+     - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do sleep 0.2; done
+     - cd modules
+     - git clone https://github.com/mohankumargupta/mentionsdrupal8module.git mentions
+     - wget "http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar"
+     - "sh -e /etc/init.d/xvfb start"
+     - "export DISPLAY=:99.0"
+     - "java -jar selenium-server-standalone-2.45.0.jar > /dev/null 2>/dev/null &"
+     - cd ..
+
+before_script:
+     - drush en -y mentions
+     - drush pm-list --pipe --type=module --status=enabled --no-core | grep -x mentions
+     - cp -a  ./modules/mentions/features .
+     - ./core/vendor/bin/behat -c ./modules/mentions/behat.yml -dl
 
 script:
      - ls -l
