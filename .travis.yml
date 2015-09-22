@@ -39,3 +39,4 @@ before_script:
 
 script:
      - ls -l
+     - ./vendor/bin/behat -c ./modules/mentions/behat.yml
