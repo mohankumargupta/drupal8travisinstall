@@ -42,4 +42,4 @@ script:
      - ls -l
      - ./vendor/phpunit/phpunit/phpunit --list-groups
      - ./vendor/phpunit/phpunit/phpunit --group Mentions
-     - ./vendor/bin/behat -c ../modules/mentions/behat.yml
+     - ./vendor/bin/behat
