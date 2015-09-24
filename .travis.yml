@@ -19,6 +19,8 @@ before_install:
      - composer global require drush/drush:dev-master
      - cd ..
      - drush site-install --db-url=mysql://root@127.0.0.1/boo --account-name=admin --account-pass=password --site-name=boo --yes 
+     - cat sites/default/settings.php
+     - rm -f sites/default/settings.php
      - drush runserver --server=builtin 8080 --strict=0 &
      #- until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do sleep 0.2; done
      - cd modules
